@@ -11,6 +11,7 @@ export default function Home() {
       <Button variant="outline">Outline</Button>
       <Button variant="muted">Muted</Button>
       <Button variant="teritary">Teritary</Button>
+      <Button disabled>Disabled</Button>
     </div>
   );
 }
