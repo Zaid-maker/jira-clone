@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import {
@@ -17,6 +17,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -44,6 +45,16 @@ export const SignInCard = () => {
     <Card className="w-full h-full md:w-[487px] border-none shadow-none">
       <CardHeader className="flex items-center justify-center text-center p-7">
         <CardTitle className="text-2xl">Welcome Back 👋</CardTitle>
+        <CardDescription>
+          By signing in, you agree to our{" "}
+          <Link href="/privacy">
+            <span className="text-blue-700">Privacy Policy</span>
+          </Link>{" "}
+          and{" "}
+          <Link href="/terms">
+            <span className="text-blue-700">Terms of Service</span>
+          </Link>
+        </CardDescription>
       </CardHeader>
       <div className="px-7">
         <DottedSeparator />
