@@ -22,12 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  name: z.string().trim().min(1, "Name is required"),
-  email: z.string().email(),
-  password: z.string().min(8, "Minimum 8 characters"),
-});
+import { registerSchema } from "../schemas";
 
 /**
  * Sign up card component for the authentication flow.
@@ -35,8 +30,8 @@ const formSchema = z.object({
  */
 
 export const SignUpCard = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -44,7 +39,7 @@ export const SignUpCard = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof registerSchema>) => {
     console.log(values);
   };
 
@@ -155,7 +150,7 @@ export const SignUpCard = () => {
           Already have an account?{" "}
           <Link href="/sign-in">
             <span className="text-blue-700">Sign In</span>
-          </Link> 
+          </Link>
         </p>
       </CardContent>
     </Card>
