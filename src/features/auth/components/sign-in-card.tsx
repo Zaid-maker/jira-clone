@@ -19,12 +19,15 @@ import {
 } from "@/components/ui/form";
 import Link from "next/link";
 import { loginSchema } from "../schemas";
+import { useLogin } from "../api/use-login";
 
 /**
  * Sign in card component for the authentication flow.
  * Displays a card with a sign-in form and options to sign in with Google or GitHub.
  */
 export const SignInCard = () => {
+  const { mutate } = useLogin()
+
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -34,7 +37,7 @@ export const SignInCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
+    mutate({ json: values });
   };
 
   return (
