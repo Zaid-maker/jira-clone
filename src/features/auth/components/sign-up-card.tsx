@@ -23,13 +23,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { registerSchema } from "../schemas";
+import { useRegister } from "../api/use-register";
 
 /**
  * Sign up card component for the authentication flow.
  * Displays a card with a sign-up form and options to sign up with Google or GitHub.
  */
-
 export const SignUpCard = () => {
+  const { mutate } = useRegister();
+
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -40,7 +42,7 @@ export const SignUpCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
-    console.log(values);
+    mutate({ json: values });
   };
 
   return (
