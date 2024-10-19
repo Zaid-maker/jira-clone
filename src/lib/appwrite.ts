@@ -1,4 +1,4 @@
-import "server-only"
+import "server-only";
 
 import { Account, Client } from "node-appwrite";
 
