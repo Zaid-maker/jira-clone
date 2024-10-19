@@ -41,6 +41,12 @@ export const SignUpCard = () => {
     },
   });
 
+  /**
+   * Handles form submission, sending the form data to the server
+   * using the `useRegister` hook, and logging the submitted data
+   * to the console for debugging purposes.
+   * @param {z.infer<typeof registerSchema>} values The form data
+   */
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
     mutate({ json: values });
     console.log({json: values})

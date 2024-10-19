@@ -36,6 +36,12 @@ export const SignInCard = () => {
     },
   });
 
+/**
+ * Handles form submission by sending the form data to the server
+ * using the `useLogin` hook and logging the submitted data
+ * to the console for debugging purposes.
+ * @param {z.infer<typeof loginSchema>} values - The form data
+ */
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     mutate({ json: values });
     console.log({json: values})
