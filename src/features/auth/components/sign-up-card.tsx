@@ -1,5 +1,7 @@
-import { FaGithub } from "react-icons/fa";
+"use client";
+
 import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
@@ -10,10 +12,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import {
   Form,
   FormControl,
@@ -21,16 +24,11 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { registerSchema } from "../schemas";
 import { useRegister } from "../api/use-register";
 
-/**
- * Sign up card component for the authentication flow.
- * Displays a card with a sign-up form and options to sign up with Google or GitHub.
- */
 export const SignUpCard = () => {
-  const { mutate } = useRegister();
+  const { mutate, isPending } = useRegister();
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -41,15 +39,8 @@ export const SignUpCard = () => {
     },
   });
 
-  /**
-   * Handles form submission, sending the form data to the server
-   * using the `useRegister` hook, and logging the submitted data
-   * to the console for debugging purposes.
-   * @param {z.infer<typeof registerSchema>} values The form data
-   */
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
     mutate({ json: values });
-    console.log({json: values})
   };
 
   return (
@@ -59,7 +50,7 @@ export const SignUpCard = () => {
         <CardDescription>
           By signing up, you agree to our{" "}
           <Link href="/privacy">
-            <span className="text-blue-700">Privacy Policy</span>
+            <span className="text-blue-700">Privacy policy</span>
           </Link>{" "}
           and{" "}
           <Link href="/terms">
@@ -67,9 +58,11 @@ export const SignUpCard = () => {
           </Link>
         </CardDescription>
       </CardHeader>
+
       <div className="px-7">
         <DottedSeparator />
       </div>
+
       <CardContent className="p-7">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -82,7 +75,7 @@ export const SignUpCard = () => {
                     <Input
                       {...field}
                       type="text"
-                      placeholder="Enter your Name"
+                      placeholder="Enter your name"
                     />
                   </FormControl>
                   <FormMessage />
@@ -98,7 +91,7 @@ export const SignUpCard = () => {
                     <Input
                       {...field}
                       type="email"
-                      placeholder="Enter Email Address"
+                      placeholder="Enter email address"
                     />
                   </FormControl>
                   <FormMessage />
@@ -114,14 +107,14 @@ export const SignUpCard = () => {
                     <Input
                       {...field}
                       type="password"
-                      placeholder="Enter Password"
+                      placeholder="Enter your password"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className="w-full" disabled={false} size="lg">
+            <Button disabled={isPending} size="lg" className="w-full">
               Sign Up
             </Button>
           </form>
@@ -131,12 +124,13 @@ export const SignUpCard = () => {
       <div className="px-7">
         <DottedSeparator />
       </div>
+
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FcGoogle className="mr-2 size-5" />
           Login with Google
@@ -145,20 +139,22 @@ export const SignUpCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGithub className="mr-2 size-5" />
-          Login with GitHub
+          Login with Github
         </Button>
       </CardContent>
+
       <div className="px-7">
         <DottedSeparator />
       </div>
+
       <CardContent className="p-7 flex items-center justify-center">
         <p>
           Already have an account?{" "}
           <Link href="/sign-in">
-            <span className="text-blue-700">Sign In</span>
+            <span className="text-blue-700">Login</span>
           </Link>
         </p>
       </CardContent>
