@@ -1,17 +1,23 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { useCurrent } from "@/features/auth/api/use-current";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const router = useRouter();
+
+  const { data, isLoading } = useCurrent();
+
+  useEffect(() => {
+    if (!data && !isLoading) {
+      router.push("/login");
+    }
+  }, [data])
+
   return (
     <div className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Button variant="secondary">
-        <Link href="/sign-up">Sign Up</Link>
-      </Button>
-      <Button variant="primary">
-        <Link href="/sign-in">Sign In</Link>
-      </Button>
+      Only logged in users can see this
     </div>
   );
 }
