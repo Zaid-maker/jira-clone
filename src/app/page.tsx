@@ -19,6 +19,7 @@ export default function Home() {
 
   return (
     <div>
+      Only logged in users can see this page.
       <UserButton />
     </div>
   );

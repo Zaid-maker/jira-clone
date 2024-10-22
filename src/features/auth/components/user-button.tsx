@@ -1,7 +1,11 @@
 "use client";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Loader } from "lucide-react";
 import { useCurrent } from "../api/use-current";
 
@@ -28,11 +32,32 @@ export const UserButton = () => {
 
   return (
     <DropdownMenu modal={false}>
-      <Avatar className="size-10 hover:bg-opacity-75 transition border border-neutral-300">
-        <AvatarFallback className="bg-neutral-200 font-medium text-neutral-500 flex items-center justify-center">
-          {avatarFallback}
-        </AvatarFallback>
-      </Avatar>
+      <DropdownMenuTrigger className="outline-none relative">
+        <Avatar className="size-10 hover:bg-opacity-75 transition border border-neutral-300">
+          <AvatarFallback className="bg-neutral-200 font-medium text-neutral-500 flex items-center justify-center">
+            {avatarFallback}
+          </AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="end"
+        side="bottom"
+        className="w-60"
+        sideOffset={10}
+      >
+        <div className="flex flex-col items-center justify-center gap-2 px-2.5 my-4">
+          <Avatar className="size-[52px] border border-neutral-300">
+            <AvatarFallback className="bg-neutral-200 text-xl font-medium text-neutral-500 flex items-center justify-center">
+              {avatarFallback}
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-sm font-medium text-neutral-900">
+              {name || "User"}
+            </p>
+          </div>
+        </div>
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };
