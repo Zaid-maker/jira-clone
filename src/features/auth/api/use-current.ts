@@ -1,5 +1,6 @@
-import { client } from "@/lib/rpc";
 import { useQuery } from "@tanstack/react-query";
+
+import { client } from "@/lib/rpc";
 
 export const useCurrent = () => {
   const query = useQuery({
@@ -17,5 +18,5 @@ export const useCurrent = () => {
     },
   });
 
-  return query
+  return query;
 };
