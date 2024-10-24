@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { Account, Client } from "node-appwrite";
 import { AUTH_COOKIE } from "./constants";
 
-export const getUser = async () => {
+export const getCurrent = async () => {
   try {
     const client = new Client()
       .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
