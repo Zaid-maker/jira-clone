@@ -1,3 +1,5 @@
+"use client";
+
 import { z } from "zod";
 
 import { FcGoogle } from "react-icons/fc";
@@ -7,7 +9,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import {
@@ -26,7 +34,7 @@ import { useLogin } from "../api/use-login";
  * Displays a card with a sign-in form and options to sign in with Google or GitHub.
  */
 export const SignInCard = () => {
-  const { mutate } = useLogin()
+  const { mutate } = useLogin();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -36,12 +44,12 @@ export const SignInCard = () => {
     },
   });
 
-/**
- * Handles form submission by sending the form data to the server
- * using the `useLogin` hook and logging the submitted data
- * to the console for debugging purposes.
- * @param {z.infer<typeof loginSchema>} values - The form data
- */
+  /**
+   * Handles form submission by sending the form data to the server
+   * using the `useLogin` hook and logging the submitted data
+   * to the console for debugging purposes.
+   * @param {z.infer<typeof loginSchema>} values - The form data
+   */
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     mutate({ json: values });
   };
