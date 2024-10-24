@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 import {
+  Card,
   CardContent,
   CardDescription,
   CardHeader,
@@ -41,7 +42,7 @@ export const SignUpCard = () => {
   };
 
   return (
-    <div className="w-full h-full md:w-[487px] border-none shadow-none">
+    <Card className="w-full h-full md:w-[487px] border-none shadow-none">
       <CardHeader className="flex items-center justify-center text-center p-7">
         <CardTitle className="text-2xl">Sign Up</CardTitle>
         <CardDescription>
@@ -149,6 +150,6 @@ export const SignUpCard = () => {
           </Link>
         </p>
       </CardContent>
-    </div>
+    </Card>
   );
 };
