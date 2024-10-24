@@ -50,7 +50,7 @@ export const SignUpCard = () => {
           <Link href="/privacy">
             <span className="text-blue-700">Privacy Policy</span>
           </Link>{" "}
-          and {""}
+          and{" "}
           <Link href="/terms">
             <span className="text-blue-700">Terms of Service</span>
           </Link>

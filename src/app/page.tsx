@@ -9,13 +9,13 @@ import { useEffect } from "react";
 export default function Home() {
   const router = useRouter();
   const { data, isLoading } = useCurrent();
-  const { mutate } = useLogout()
+  const { mutate } = useLogout();
 
   useEffect(() => {
     if (!data && !isLoading) {
-      router.push("/login");
+      router.push("/sign-in");
     }
-  }, [data])
+  }, [data]);
 
   return (
     <div>
