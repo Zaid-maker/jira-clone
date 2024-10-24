@@ -34,7 +34,7 @@ import { useLogin } from "../api/use-login";
  * Displays a card with a sign-in form and options to sign in with Google or GitHub.
  */
 export const SignInCard = () => {
-  const { mutate } = useLogin();
+  const { mutate, isPending } = useLogin();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -107,7 +107,7 @@ export const SignInCard = () => {
                 </FormItem>
               )}
             />
-            <Button className="w-full" disabled={false} size="lg">
+            <Button disabled={isPending} className="w-full" size="lg">
               Login
             </Button>
           </form>
@@ -122,7 +122,7 @@ export const SignInCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FcGoogle className="mr-2 size-5" />
           Login with Google
@@ -131,7 +131,7 @@ export const SignInCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGithub className="mr-2 size-5" />
           Login with GitHub
