@@ -6,6 +6,15 @@ import { createWorkspaceSchema } from "../schemas";
 import { z } from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DottedSeparator } from "@/components/dotted-separator";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface CreateWorkspaceFormProps {
   onCancel?: () => void;
@@ -34,7 +43,28 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
         <DottedSeparator />
       </div>
       <CardContent className="p-7">
-        
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Workspace Name</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Workspace Name" />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+            <DottedSeparator className="py-7" />
+            <div className="flex items-center justify-between">
+                <Button type="button">Cancel</Button>
+            </div>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   );
