@@ -22,6 +22,7 @@ const app = new Hono().post(
       // @ts-ignore
       {
         name,
+        user: user.$id,
       }
     );
 
