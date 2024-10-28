@@ -5,7 +5,7 @@ import { sessionMiddleware } from "@/lib/session-middleware";
 import { DATABASE_ID, WORKSPACES_ID } from "@/config";
 import { ID } from "node-appwrite";
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 const app = new Hono().post(
   "/",
@@ -17,11 +17,10 @@ const app = new Hono().post(
 
     const { name } = c.req.valid("json");
 
-    const workspace = await databases.create(
+    const workspace = await databases.createDocument(
       DATABASE_ID,
       WORKSPACES_ID,
       ID.unique(),
-      // @ts-ignore
       {
         name,
         user: user.$id,
