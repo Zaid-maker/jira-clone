@@ -5,6 +5,8 @@ import { sessionMiddleware } from "@/lib/session-middleware";
 import { DATABASE_ID, WORKSPACES_ID } from "@/config";
 import { ID } from "node-appwrite";
 
+export const runtime = 'edge';
+
 const app = new Hono().post(
   "/",
   zValidator("json", createWorkspaceSchema),
