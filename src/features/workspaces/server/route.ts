@@ -23,7 +23,7 @@ const app = new Hono().post(
       ID.unique(),
       {
         name,
-        user: user.$id,
+        userId: user.$id,
       }
     );
 
