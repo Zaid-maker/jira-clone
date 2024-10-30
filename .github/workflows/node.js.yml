@@ -27,3 +27,16 @@ jobs:
 
       - name: Generate Documentation
         run: npx typedoc --options typedoc.json
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit Changes
+        run: |
+          git add docs
+          git commit -m "chore: update documentation"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
