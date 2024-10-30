@@ -1,5 +1,14 @@
 {
-  "entryPoints": ["src/config.ts", "src/app/api/[[...route]]/route.ts", "src/lib/appwrite.ts", "src/lib/rpc.ts"],
+  "entryPoints": [
+    "src/config.ts",
+    "src/app/api/[[...route]]/route.ts",
+    "src/lib/appwrite.ts",
+    "src/lib/rpc.ts",
+    "src/lib/utils.ts",
+    "src/lib/session-middleware.ts",
+    "src/features/auth/server/route.ts",
+    "src/features/workspaces/server/route.ts"
+  ],
   "out": "docs",
   "tsconfig": "tsconfig.json",
   "includeVersion": true
