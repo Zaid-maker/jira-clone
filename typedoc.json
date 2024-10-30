@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src"],
+  "entryPoints": ["src/**/*.ts", "src/**/*.tsx"],
   "out": "docs",
   "tsconfig": "tsconfig.json",
   "includeVersion": true
