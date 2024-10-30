@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src/app/config.ts", "src/app/api/[[...route]]/route.ts", "src/lib/appwrite.ts"],
+  "entryPoints": ["src/config.ts", "src/app/api/[[...route]]/route.ts", "src/lib/appwrite.ts", "src/lib/rpc.ts"],
   "out": "docs",
   "tsconfig": "tsconfig.json",
   "includeVersion": true
