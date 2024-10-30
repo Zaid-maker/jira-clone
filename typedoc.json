@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["src/app/config.ts", "src/app/api/[[...route]]/route.ts", "src/lib/appwrite.ts"],
+  "out": "docs",
+  "tsconfig": "tsconfig.json",
+  "includeVersion": true
+}

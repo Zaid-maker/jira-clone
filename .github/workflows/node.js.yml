@@ -24,3 +24,6 @@ jobs:
 
       - name: Build
         run: bun run build
+
+      - name: Generate Documentation
+        run: npx typedoc --options typedoc.json
