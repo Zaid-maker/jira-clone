@@ -15,8 +15,8 @@ jobs:
           echo "Checking health at ${{ secrets.NEXT_APP_URL }}/api/health"
           STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}" ${{ secrets.NEXT_APP_URL }}/api/health)
           if [ "$STATUS_CODE" -ne 200 ]; then
-             echo "Health check failed with status code $STATUS_CODE"
-             curl -v ${{ secrets.NEXT_APP_URL }}/api/health  # Verbose output for debugging
+            echo "Health check failed with status code $STATUS_CODE"
+            curl -v ${{ secrets.NEXT_APP_URL }}/api/health  # Verbose output for debugging
            exit 1
           else
            echo "Health check passed with status code $STATUS_CODE"
