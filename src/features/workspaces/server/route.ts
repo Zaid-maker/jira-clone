@@ -44,7 +44,7 @@ const app = new Hono().post(
       {
         name,
         userId: user.$id,
-        imageUrl: uploadedImageUrl,
+        image: uploadedImageUrl,
       }
     );
 
