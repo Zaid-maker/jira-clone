@@ -12,6 +12,8 @@
     "@hello-pangea/dnd": "^17.0.0",
     "@hono/zod-validator": "^0.3.0",
     "@hookform/resolvers": "^3.9.0",
+    "@percy/playwright": "^1.0.6",
+    "@playwright/test": "^1.48.2",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
