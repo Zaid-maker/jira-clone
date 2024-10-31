@@ -21,3 +21,67 @@ jobs:
           else
            echo "Health check passed with status code $STATUS_CODE"
             fi
+
+      - name: Send Slack Notification on Failure
+        if: ${{failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          payload="{
+            \"text\": \"❌ Backend health check failed. Please investigate.\",
+            \"attachments\": [
+              {
+              \"color\": \"#ff0000\",
+              \"fields\": [
+                {
+                  \"title\": \"Service\",
+                  \"value\": \"Backend\",
+                  \"short\": true
+                },
+                {
+                  \"title\": \"Status\",
+                  \"value\": \"Failed\",
+                  \"short\": true
+                },
+                {
+                  \"title\": \"URL\",
+                  \"value\": \"https://your-app-url.com/api/health\",
+                  \"short\": false
+                }
+              ]
+            }
+          ]
+          }"
+          curl -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
+
+      - name: Send Slack Notification on Success
+        if: success()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          payload="{
+          \"text\": \"✅ Backend health check passed successfully.\",
+          \"attachments\": [
+            {
+              \"color\": \"#36a64f\",
+              \"fields\": [
+                {
+                  \"title\": \"Service\",
+                  \"value\": \"Backend\",
+                  \"short\": true
+                },
+                {
+                  \"title\": \"Status\",
+                  \"value\": \"Success\",
+                  \"short\": true
+                },
+                {
+                  \"title\": \"URL\",
+                  \"value\": \"https://your-app-url.com/api/health\",
+                  \"short\": false
+                }
+              ]
+            }
+          ]
+          }"
+          curl -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
