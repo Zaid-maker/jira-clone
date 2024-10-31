@@ -1,0 +1,4 @@
+version: 2
+snapshots:
+  widths: [375, 768, 1280] # Capture snapshots at mobile, tablet, and desktop widths
+  min-height: 800
